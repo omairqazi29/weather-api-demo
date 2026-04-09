@@ -1,27 +1,16 @@
 # MOOweather
 
-MOOweather is a command-line weather app.
+MOOweather is a simple CLI tool to get weather information for cities using OpenWeatherMap API.
 
 ## Installation
 
 ```bash
-poetry install
+pip install -e .
 ```
 
 ## Usage
 
 ```bash
-poetry run MOOweather London
-```
-
-or
-
-```bash
-python -m src.main London
-```
-
-## Help
-
-```bash
-poetry run MOOweather --help
+mooweather <city>
+mooweather --help
 ```

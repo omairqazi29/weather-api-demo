@@ -1,32 +1,28 @@
 #!/usr/bin/env python3
-"""
-MOOweather - CLI weather tool.
-"""
+"""MOOweather main entry point."""
 
 import argparse
-from .weather_client import get_weather
-from .formatters import format_weather
-from .cache import get_cached_weather, cache_weather
+import sys
+
+from mooweather.weather_client import get_weather
+from mooweather.formatters import format_plain, format_json
 
 
 def main():
     parser = argparse.ArgumentParser(
-        prog='MOOweather',
-        description='Get the current weather for any city with MOOweather.'
+        prog='mooweather',
+        description='MOOweather: Fetch current weather for any city.',
+        epilog='Thanks for using MOOweather! Powered by OpenWeatherMap.'
     )
-    parser.add_argument('city')
-    parser.add_argument('--no-cache', action='store_true')
+    parser.add_argument('city', help='The city name')
+    parser.add_argument('--json', action='store_true', help='Output in JSON format')
     args = parser.parse_args()
 
-    if not args.no_cache:
-        cached = get_cached_weather(args.city)
-        if cached:
-            print(format_weather(cached))
-            return
-
     weather = get_weather(args.city)
-    print(format_weather(weather))
-    cache_weather(args.city, weather)
+    if args.json:
+        print(format_json(weather))
+    else:
+        print(format_plain(weather))
 
 
 if __name__ == '__main__':

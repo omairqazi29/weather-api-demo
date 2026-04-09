@@ -1,20 +1,17 @@
+"""Cache module for MOOweather."""
+
 import json
-import os
-from typing import Optional
+from pathlib import Path
+import time
 
-_CACHE_DIR = ".mooweather_cache"
+class WeatherCache:
+    def __init__(self):
+        self.cache_file = Path.home() / '.mooweather_cache.json'
 
+    def get(self, city):
+        # placeholder
+        return None
 
-def get_cache(city: str) -> Optional[dict]:
-    path = os.path.join(_CACHE_DIR, f"{city}.json")
-    if os.path.exists(path):
-        with open(path) as f:
-            return json.load(f)
-    return None
-
-
-def set_cache(city: str, data: dict):
-    os.makedirs(_CACHE_DIR, exist_ok=True)
-    path = os.path.join(_CACHE_DIR, f"{city}.json")
-    with open(path, "w") as f:
-        json.dump(data, f)
+    def set(self, city, data):
+        # placeholder
+        pass

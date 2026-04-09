@@ -2,7 +2,7 @@ import json
 import os
 from typing import Optional
 
-_CACHE_DIR = ".mooweather_cache"
+_CACHE_DIR = ".weather_cache"
 
 
 def get_cache(city: str) -> Optional[dict]:

@@ -1,6 +1,6 @@
 class PlainFormatter:
     def format(self, data):
-        return f"MOOweather in {data['name']}: {data['main']['temp']}C"
+        return f"Weather in {data['name']}: {data['main']['temp']}C"
 
 class JSONFormatter:
     def format(self, data):

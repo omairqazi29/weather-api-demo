@@ -1,2 +1,2 @@
 __version__ = "0.1.0"
-__title__ = "MOOweather"
+__title__ = "weather"

@@ -1,6 +1,6 @@
-# MOOweather CLI
+# Weather CLI
 
-A simple MOOweather CLI tool to fetch current weather.
+A simple weather CLI tool to fetch current weather.
 
 ## Usage
 

@@ -1,5 +1,5 @@
 import time
-from typing import Optional
+from typing import Any, Optional
 
 
 class WeatherCache:
@@ -23,3 +23,21 @@ class WeatherCache:
 
     def clear(self) -> None:
         self._store.clear()
+
+
+cache = {}
+TTL = 300
+
+
+def set_cache(key: str, value: Any) -> None:
+    cache[key] = (value, time.time())
+
+
+def get_cache(key: str) -> Optional[Any]:
+    if key not in cache:
+        return None
+    value, timestamp = cache[key]
+    if time.time() - timestamp > TTL:
+        del cache[key]
+        return None
+    return value

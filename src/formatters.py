@@ -21,3 +21,11 @@ def format_weather_summary(data: dict) -> str:
         f"humidity {data['humidity']}%, "
         f"wind {format_wind_speed(data['wind_speed'])}"
     )
+
+
+class PlainFormatter:
+    def format(self, weather_data: dict) -> str:
+        city = weather_data.get('city', 'Unknown')
+        temp = weather_data.get('temp', 0)
+        description = weather_data.get('description', '')
+        return f"Weather in {city}: {temp}°C, {description}"

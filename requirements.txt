@@ -1,1 +1,2 @@
 requests
+tenacity>=8.2.1

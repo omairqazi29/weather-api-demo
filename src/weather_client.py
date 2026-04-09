@@ -1,5 +1,5 @@
 import requests
-from requests.exceptions import RequestException
+from requests.exceptions import ConnectionError, Timeout, ConnectTimeout, ReadTimeout
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 
 class WeatherClient:
@@ -7,7 +7,7 @@ class WeatherClient:
         self.api_key = api_key
         self.base_url = "https://api.openweathermap.org/data/2.5"
 
-    @retry(wait=wait_exponential(multiplier=1, min=4, max=60), stop=stop_after_attempt(5), retry=retry_if_exception_type(RequestException), reraise=True)  # Exponential backoff: 5 attempts, 4-60s wait on RequestException
+    @retry(wait=wait_exponential(multiplier=1, min=1, max=60), stop=stop_after_attempt(5), retry=retry_if_exception_type((ConnectionError, Timeout, ConnectTimeout, ReadTimeout)), reraise=True)  # Exponential backoff: retries up to 5 times on transient network errors with backoff starting at 1s, doubling each time up to 60s max wait.
     def fetch_weather(self, lat: float, lon: float) -> dict:
         url = f"{self.base_url}/weather"
         params = {

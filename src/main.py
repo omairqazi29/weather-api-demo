@@ -1,27 +1,33 @@
 #!/usr/bin/env python3
-"""Main entry point for MOOweather CLI."""
+"""
+MOOweather - CLI weather tool.
+"""
 
 import argparse
 from .weather_client import get_weather
-from .formatters import PlainFormatter
-
-
-def create_parser():
-    parser = argparse.ArgumentParser(
-        description="MOOweather CLI - Get current weather for a city"
-    )
-    parser.add_argument("--city", required=True, help="City name")
-    return parser
+from .formatters import format_weather
+from .cache import get_cached_weather, cache_weather
 
 
 def main():
-    parser = create_parser()
+    parser = argparse.ArgumentParser(
+        prog='MOOweather',
+        description='Get the current weather for any city with MOOweather.'
+    )
+    parser.add_argument('city')
+    parser.add_argument('--no-cache', action='store_true')
     args = parser.parse_args()
+
+    if not args.no_cache:
+        cached = get_cached_weather(args.city)
+        if cached:
+            print(format_weather(cached))
+            return
+
     weather = get_weather(args.city)
-    formatter = PlainFormatter()
-    print(formatter.format(weather))
-    print("Powered by MOOweather CLI")
+    print(format_weather(weather))
+    cache_weather(args.city, weather)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

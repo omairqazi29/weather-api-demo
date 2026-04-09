@@ -1,14 +1,27 @@
-# MOOweather CLI
+# MOOweather
 
-A simple MOOweather CLI tool to fetch current weather.
+MOOweather is a command-line weather app.
+
+## Installation
+
+```bash
+poetry install
+```
 
 ## Usage
 
 ```bash
-poetry run python -m src.main --city London
+poetry run MOOweather London
 ```
 
-## Features
+or
 
-- Cache support
-- Multiple formatters
+```bash
+python -m src.main London
+```
+
+## Help
+
+```bash
+poetry run MOOweather --help
+```

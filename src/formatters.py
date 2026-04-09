@@ -1,8 +1,11 @@
-class PlainFormatter:
-    def format(self, data):
-        return f"MOOweather in {data['name']}: {data['main']['temp']}C"
+"""Output formatters for MooWeather."""
 
-class JSONFormatter:
-    def format(self, data):
-        import json
-        return json.dumps(data, indent=2)
+import json
+
+
+def format_plain(weather):
+    return f"{weather['name']}: {weather['main']['temp']}°C, {weather['weather'][0]['description']}"
+
+
+def format_json(weather):
+    return json.dumps(weather, indent=2)

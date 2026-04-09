@@ -1,10 +1,11 @@
+"""Weather API client for MooWeather."""
+
 import requests
 
-USER_AGENT = "MOOweatherCLI/0.1.0"
+API_KEY = 'demo'
 
 
-def get_weather(city):
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=KEY"
-    headers = {"User-Agent": USER_AGENT}
-    resp = requests.get(url, headers=headers)
+def get_weather(city, api_key=API_KEY):
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+    resp = requests.get(url)
     return resp.json()

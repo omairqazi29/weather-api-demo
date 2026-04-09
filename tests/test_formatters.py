@@ -1,9 +1,20 @@
+import json
 import pytest
-from src.formatters import PlainFormatter
+from mooweather.formatters import format_plain, format_json
 
-SAMPLE_DATA = {"name": "London", "main": {"temp": 20}}
+SAMPLE_WEATHER = {
+    'name': 'London',
+    'main': {'temp': 15.0},
+    'weather': [{'description': 'cloudy'}]
+}
 
 
-def test_plain_formatter():
-    fmt = PlainFormatter()
-    assert "MOOweather in London" in fmt.format(SAMPLE_DATA)
+def test_format_plain():
+    result = format_plain(SAMPLE_WEATHER)
+    assert 'London' in result
+    assert '15.0' in result
+
+
+def test_format_json():
+    result = format_json(SAMPLE_WEATHER)
+    assert isinstance(json.loads(result), dict)

@@ -1,14 +1,16 @@
-# MOOweather CLI
+# MooWeather
 
-A simple MOOweather CLI tool to fetch current weather.
+MooWeather is a simple CLI tool to get weather information for cities using OpenWeatherMap API.
+
+## Installation
+
+```bash
+pip install -e .
+```
 
 ## Usage
 
 ```bash
-poetry run python -m src.main --city London
+mooweather <city>
+mooweather --help
 ```
-
-## Features
-
-- Cache support
-- Multiple formatters

@@ -1,27 +1,29 @@
 #!/usr/bin/env python3
-"""Main entry point for MOOweather CLI."""
+"""MooWeather main entry point."""
 
 import argparse
-from .weather_client import get_weather
-from .formatters import PlainFormatter
+import sys
 
-
-def create_parser():
-    parser = argparse.ArgumentParser(
-        description="MOOweather CLI - Get current weather for a city"
-    )
-    parser.add_argument("--city", required=True, help="City name")
-    return parser
+from mooweather.weather_client import get_weather
+from mooweather.formatters import format_plain, format_json
 
 
 def main():
-    parser = create_parser()
+    parser = argparse.ArgumentParser(
+        prog='mooweather',
+        description='MooWeather: Fetch current weather for any city.',
+        epilog='Thanks for using MooWeather! Powered by OpenWeatherMap.'
+    )
+    parser.add_argument('city', help='The city name')
+    parser.add_argument('--json', action='store_true', help='Output in JSON format')
     args = parser.parse_args()
+
     weather = get_weather(args.city)
-    formatter = PlainFormatter()
-    print(formatter.format(weather))
-    print("Powered by MOOweather CLI")
+    if args.json:
+        print(format_json(weather))
+    else:
+        print(format_plain(weather))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

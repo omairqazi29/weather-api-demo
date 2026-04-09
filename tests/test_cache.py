@@ -8,4 +8,4 @@ def test_cache(tmp_path):
     data = {"temp": 20}
     set_cache("London", data)
     assert get_cache("London") == data
-    assert os.path.exists(".weather_cache/London.json")
+    assert os.path.exists(".mooweather_cache/London.json")

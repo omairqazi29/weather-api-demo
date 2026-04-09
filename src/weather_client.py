@@ -1,6 +1,6 @@
 import requests
 
-USER_AGENT = "WeatherCLI/0.1.0"
+USER_AGENT = "MOOweatherCLI/0.1.0"
 
 
 def get_weather(city):

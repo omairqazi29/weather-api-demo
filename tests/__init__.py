@@ -1,1 +1,1 @@
-# Tests for weather app
+# Tests for MOOweather app

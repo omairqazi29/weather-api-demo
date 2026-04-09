@@ -1,4 +1,4 @@
-"""Output formatters for MOOweather."""
+"""Output formatters for MooWeather."""
 
 import json
 

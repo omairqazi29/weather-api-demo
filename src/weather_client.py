@@ -1,4 +1,4 @@
-"""Weather API client for MOOweather."""
+"""Weather API client for MooWeather."""
 
 import requests
 

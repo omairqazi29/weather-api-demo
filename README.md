@@ -1,6 +1,6 @@
-# MOOweather
+# MooWeather
 
-MOOweather is a simple CLI tool to get weather information for cities using OpenWeatherMap API.
+MooWeather is a simple CLI tool to get weather information for cities using OpenWeatherMap API.
 
 ## Installation
 

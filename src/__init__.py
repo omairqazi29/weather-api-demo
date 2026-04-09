@@ -1,4 +1,4 @@
-"""MOOweather package."""
+"""MooWeather package."""
 
 __version__ = '0.1.0'
 

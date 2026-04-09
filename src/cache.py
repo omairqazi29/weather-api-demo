@@ -1,4 +1,4 @@
-"""Cache module for MOOweather."""
+"""Cache module for MooWeather."""
 
 import json
 from pathlib import Path
